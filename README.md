@@ -13,7 +13,7 @@ No additional/original patch are applied beyond that
 The directory `output` contains the built unsigned-shim as RPMs
 and extracted into individual files.
 
-# Shim rewview folder
+# Shim review folder
 
 A shim review supporting data folder is created automatically
 over in the `toupload` directory. It includes all the requested
