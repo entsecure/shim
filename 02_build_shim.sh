@@ -3,6 +3,9 @@ set -e
 source VARS
 mkdir -p output
 
+echo "Update Evren DBX file"
+./update_vendor_dbx.sh
+
 echo "Building shim" | tee toupload/02-shim-build.log
 docker build -t evren/shim-build:v${SHIM_VERSION} -f Dockerfile-build \
     --build-arg SHIM_VERSION=${SHIM_VERSION} \
@@ -11,7 +14,7 @@ docker build -t evren/shim-build:v${SHIM_VERSION} -f Dockerfile-build \
     --build-arg SHIM_ARCHIVE_SHA256=${SHIM_ARCHIVE_SHA256} \
     . 2>&1 | tee -a toupload/02-shim-build.log
 
-echo -e "\nCopying generating shim RPM to output directory\n" | tee -a toupload/02-shim-build.log
+echo -e "\nCopying generated shim RPM to output directory\n" | tee -a toupload/02-shim-build.log
 
 docker run --rm \
     --volume=`pwd`/output:/output:rw \
